@@ -1,0 +1,16 @@
+{
+  "name": "gp",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "parcel src/index.html --port 3000",
+    "build": "parcel build src/index.html"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.0"
+  }
+}
