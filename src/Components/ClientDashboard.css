@@ -1,0 +1,348 @@
+/* Main Container */
+.dashboard-container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0a192f; /* Base navy blue */
+  min-height: 100vh;
+  color: #ffffff; /* Light blue text for contrast */
+}
+
+.dashboard-title {
+  color: #c7d2fe;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Controls Container */
+.controls-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.search-bar-container {
+  display: flex;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.search-bar {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #1e2a47;
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 250px;
+  background-color: #0f1a3a; /* Darker navy */
+  color: #c7d2fe;
+}
+
+.search-bar::placeholder {
+  color: #7c8db5; /* Desaturated navy */
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #1e3a8a; /* Classic navy */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s;
+}
+
+.search-button:hover {
+  background-color: #233d96; /* Brighter navy */
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.action-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.print-button,
+.export-button {
+  background-color: #1e3a8a; /* Classic navy */
+  color: white;
+}
+
+.print-button:hover,
+.export-button:hover {
+  background-color: #233d96; /* Brighter navy */
+}
+
+/* Table Styles */
+.transactions-table-container {
+  overflow-x: auto;
+  background: #0a192f; /* Base navy */
+  border-radius: 8px;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background-color: #0f1a3a; /* Darker navy */
+  color: #c7d2fe;
+}
+
+.transactions-table th {
+  padding: 15px;
+  text-align: left;
+  background-color: #1e3a8a; /* Classic navy */
+  color: w black;
+  font-weight: 500;
+  position: sticky;
+  top: 0;
+}
+
+.transactions-table td {
+  padding: 15px;
+  border-bottom: 1px solid #1e2a47; /* Border navy */
+}
+
+.transactions-table tr:hover {
+  background-color: #1e2a47; /* Hover navy */
+}
+
+.amount-cell {
+  font-weight: 500;
+}
+
+.amount-cell.negative {
+  color: #ff9e9e; /* Soft red (kept for usability) */
+}
+
+.amount-cell.positive {
+  color: #9ae6b4; /* Soft green (kept for usability) */
+}
+
+/* Status/Risk Badges - Adjusted to navy palette */
+.status-badge, .risk-badge {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  display: inline-block;
+}
+
+.status-completed, .risk-low {
+ 
+  color: #04aa31;
+}
+
+.status-pending, .risk-medium {
+
+  color: #de8f08;
+}
+.status-declined, .risk-high {
+  color:red;
+}
+.no-results {
+  text-align: center;
+  padding: 20px;
+  color: #7c8db5; /* Desaturated navy */
+}
+/* Transaction Cards */
+.transaction-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #160139;
+}
+
+.detail-card {
+  background-color: rgb(9, 1, 68);
+  border-radius: 6px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #ffffff;
+  transition: all 0.3s ease;
+}
+
+.detail-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.detail-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  border-bottom: 2px solid #ffffff;
+  padding-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px dashed #eee;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Update modal colors to match table */
+.modal-content {
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.modal-close-button {
+  color: #7f8c8d;
+}
+
+.modal-close-button:hover {
+  color: #ffffff;
+}
+/* Add these styles to your ClientDashboard.css */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content-popup {
+  background: rgb(0, 14, 40);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: popIn 0.3s ease-out forwards;
+  position: relative;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.modal-close-button:hover {
+  color: #333;
+}
+
+.transaction-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.detail-card {
+  background: #010124;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.detail-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  border-bottom: 1px solid #fefefe;
+  padding-bottom: 0.5rem;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 0.75rem;
+}
+
+.detail-label {
+  font-weight: 600;
+  min-width: 120px;
+  color: #ffffff;
+}
+
+/* Add these styles to your existing CSS */
+
+.card-title-with-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.card-title-with-logo svg {
+  width: 20px;
+  height: 20px;
+  color: #555;
+}
+
+.location-with-logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.location-with-logo svg {
+  width: 16px;
+  height: 16px;
+  color: #555;
+}
+
+/* If you want to add some hover effects */
+.card-title-with-logo svg:hover,
+.location-with-logo svg:hover {
+  color: #0066cc;
+}

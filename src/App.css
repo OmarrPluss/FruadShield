@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: navy;
+}
+
+/* If you have a content container */
+.content-container {
+    max-width: 1200px; /* or your preferred max width */
+    margin: 0 auto;
+    background-color: rgb(0, 0, 0); /* or whatever your content background should be */
+    min-height: 100vh; /* or specific height */
+    box-shadow: 0 0 0 10px navy; /* optional - creates navy border around content */
+}
+
+/* Alternative approach if you're using a layout with header/footer */
+html {
+    background-color: navy;
+}
+
+body {
+    background-color: rgb(0, 0, 0); /* or your content background */
+    margin: 0 auto;
+    max-width: 1200px; /* or your preferred max width */
+    min-height: 100vh;
+}

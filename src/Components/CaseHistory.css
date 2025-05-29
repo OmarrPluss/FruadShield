@@ -1,0 +1,64 @@
+/* Container and general styles */
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212; /* Very dark grey background */
+  color: #130073; /* Light grey text */
+  min-height: 100vh;
+}
+
+/* CASE ITEMS - NOW FULLY GREY */
+.case-item {
+  background-color: #2e2e2e !important; /* Medium grey background */
+  border: 1px solid #3e3e3e !important; /* Grey border */
+}
+
+/* CASE DETAILS - LIGHTER GREY CONTAINER */
+.case-details {
+  background-color: #383838 !important; /* Distinct grey background */
+  border-radius: 6px;
+  padding: 12px 15px;
+  margin-top: 10px;
+  border-left: 3px solid #4a4a4a; /* Accent border */
+}
+
+/* DETAIL ROWS - VISIBLE GREY LINES */
+.case-details-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #4e4e4e; /* Grey separator */
+  color: #d0d0d0; /* Light grey text */
+}
+
+/* STATUS BADGES - GREY VERSION */
+.status-resolved { background-color: #5a5a5a !important; }
+.status-pending { background-color: #7a7a7a !important; }
+.status-open { background-color: #9a9a9a !important; }
+
+/* MODAL - GREY BACKGROUND */
+.modal-content {
+  background: #2a2a2a !important; /* Dark grey */
+  border: 1px solid #4a4a4a !important;
+}
+
+/* SEARCH BAR - GREY VERSION */
+.search-bar {
+  background-color: #2a2a2a !important;
+  border: 1px solid #3a3a3a !important;
+}
+
+/* BUTTONS - GREY SCALE */
+.search-button, .view-button {
+  background-color: #4a4a4a !important;
+  &:hover {
+    background-color: #5a5a5a !important;
+  }
+}
+
+/* TEXT HIERARCHY */
+.case-name { color: #ffffff !important; } /* White for emphasis */
+.case-details-row { color: #c0c0c0 !important; } /* Light grey */
+.modal-section h4 { color: #e0e0e0 !important; } /* Off-white */
