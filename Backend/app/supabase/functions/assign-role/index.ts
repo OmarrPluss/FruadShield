@@ -10,8 +10,8 @@ serve(async (req) => {
     // Detect role
     let role: 'admin' | 'analyst' | 'business_manager' | 'customer' | 'bank_staff' = 'customer'
 
-    if (email === 'admin@yourapp.com') role = 'admin'
-    else if (email.endsWith('@bankcorp.com')) role = 'bank_staff'
+    if (email === 'admin@fraudsheild.com') role = 'admin'
+    else if (email.endsWith('@cibeg.com') || email.endsWith('@banquemisr.com') || email.endsWith('@qnb.com') ) role = 'bank_staff'
     else if (email.endsWith('@facility.org')) role = 'business_manager'
 
     // Supabase Edge client
