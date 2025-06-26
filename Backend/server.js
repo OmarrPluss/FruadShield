@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -56,3 +57,43 @@ app.post('/api/search', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+
+//login
+/*
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) return res.status(401).json({ error: error.message });
+
+  const user = data.user;
+  const session = data.session;
+  const loginTime = new Date().toISOString();
+
+  let role = user.user_metadata?.role;
+
+  if (!role) {
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single();
+    role = profile?.role || 'guest';
+  }
+
+  res.cookie('session_info', JSON.stringify({
+    id: user.id,
+    role,
+    loginTime
+  }), {
+    httpOnly: true,
+    secure: true, 
+    maxAge: 24 * 60 * 60 * 1000, 
+    sameSite: 'Strict'
+  });
+
+  return res.json({ message: 'Login successful', user: { id: user.id, role } });
+});
+
+*/
