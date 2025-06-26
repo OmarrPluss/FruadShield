@@ -1,152 +1,103 @@
-/* frontend/src/App.css */
-body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f7f6;
-  color: #333;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* FraudWatch Dark Theme Colors */
+:root {
+  --bg-color: #1e1e2c;
+  --card-color: #27293B;
+  --nav-color: #2a2b3d;
+  --primary-accent: #4d8bf0;
+  --positive: #00b894;
+  --negative: #e84393;
+  --warning: #fdcb6e;
+  --text-light: #e0e0e0;
+  --text-muted: #a0a0c0;
+  --divider-color: #4a4d66;
+  
+  --radius: 0.625rem;
+  --background: var(--bg-color);
+  --foreground: var(--text-light);
+  --card: var(--card-color);
+  --card-foreground: var(--text-light);
+  --popover: var(--card-color);
+  --popover-foreground: var(--text-light);
+  --primary: var(--primary-accent);
+  --primary-foreground: #ffffff;
+  --secondary: var(--divider-color);
+  --secondary-foreground: var(--text-light);
+  --muted: var(--divider-color);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--primary-accent);
+  --accent-foreground: #ffffff;
+  --destructive: var(--negative);
+  --border: var(--divider-color);
+  --input: var(--bg-color);
+  --ring: var(--primary-accent);
+  --chart-1: var(--primary-accent);
+  --chart-2: var(--positive);
+  --chart-3: var(--warning);
+  --chart-4: var(--negative);
+  --chart-5: var(--text-muted);
+  --sidebar: var(--card-color);
+  --sidebar-foreground: var(--text-light);
+  --sidebar-primary: var(--primary-accent);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--divider-color);
+  --sidebar-accent-foreground: var(--text-light);
+  --sidebar-border: var(--divider-color);
+  --sidebar-ring: var(--primary-accent);
 }
 
-.app {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
+@layer base {
+  * {
+    @apply border border-gray-700;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
 }
 
-h1 {
-  color: #2c3e50;
-  margin-bottom: 30px;
-  font-size: 2.5em;
-  font-weight: 700;
+/* Custom styles for FraudWatch theme */
+.risk-low { 
+  background-color: var(--positive); 
+}
+.risk-medium { 
+  background-color: var(--warning); 
+}
+.risk-high { 
+  background-color: var(--negative); 
 }
 
-.search-container {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 30px;
-  justify-content: center;
+.risk-low-bg { 
+  background-color: rgba(0, 184, 148, 0.2); 
+  color: var(--positive); 
+}
+.risk-medium-bg { 
+  background-color: rgba(253, 203, 110, 0.2); 
+  color: var(--warning); 
+}
+.risk-high-bg { 
+  background-color: rgba(232, 67, 147, 0.2); 
+  color: var(--negative); 
 }
 
-.search-container input {
-  flex: 1;
-  max-width: 400px;
-  padding: 12px 18px;
-  font-size: 1.1em;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.search-container input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-}
-
-.search-container button {
-  padding: 12px 25px;
-  background: linear-gradient(135deg, #007bff, #0056b3);
+/* Additional styles for risk badges */
+.risk-low-bg {
+  background-color: var(--positive);
   color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.1em;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
 }
 
-.search-container button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #0056b3, #003f7f);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+.risk-medium-bg {
+  background-color: var(--warning);
+  color: black;
 }
 
-.search-container button:disabled {
-  background: #cccccc;
-  cursor: not-allowed;
-  box-shadow: none;
+.risk-high-bg {
+  background-color: var(--negative);
+  color: white;
 }
 
-.error {
-  color: #dc3545;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 25px;
-  font-size: 1em;
-  font-weight: 500;
-}
-
-.results {
-  margin-top: 30px;
-  text-align: left;
-}
-
-.result-item {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border: 1px solid #e9ecef;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
-}
-
-.result-item:hover {
-  transform: translateY(-3px);
-}
-
-.result-item h3 {
-  color: #007bff;
-  margin-top: 0;
-  margin-bottom: 8px;
-  font-size: 1.4em;
-  font-weight: 600;
-}
-
-.result-item p {
-  color: #555;
-  margin-bottom: 5px;
-  line-height: 1.6;
-}
-
-.result-item p:last-child {
-  margin-bottom: 0;
-}
-
-.loading {
-  text-align: center;
-  padding: 30px;
-  font-size: 1.2em;
-  color: #6c757d;
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  .app {
-    padding: 15px;
-    margin: 20px auto;
-  }
-
-  h1 {
-    font-size: 2em;
-  }
-
-  .search-container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-  }
-
-  .search-container input,
-  .search-container button {
-    width: 100%;
-    max-width: none;
-  }
-}

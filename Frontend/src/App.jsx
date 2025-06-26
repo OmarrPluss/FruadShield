@@ -1,72 +1,96 @@
-// frontend/src/App.js
-import React, { useState } from 'react';
-import axios from 'axios';
-import './App.css'; // <--- Make sure this file exists!
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import TopNavigation from './components/layout/TopNavigation';
+import DashboardPage from './pages/DashboardPage';
+import MarketTrends from './pages/MarketTrends';
+import CassesPage from './pages/CassesPage';
+import ManageUserDataPage from './pages/ManageUserDataPage';
+import ModelFeedback from './pages/ModelFeedback';
+import ModelManagment from './pages/ModelManagment';
+import SettingsPage from './pages/SettingsPage';
+import { DashboardProvider } from './context/DashboardContext';
+import './styles/global.css';
+
+// Import FontAwesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { 
+  faShieldAlt, faTachometerAlt, faChartLine, faBell, faUsers, faCog, 
+  faChevronDown, faCalendar, faFileExport, faGlobe, faExclamationTriangle,
+  faCreditCard, faChartPie, faFilter, faIndustry, faSyncAlt, faMapMarkedAlt,
+  faLayerGroup, faGavel, faPrint, faWallet, faBullseye, faDollarSign, faMedal,
+  faTrophy, faLightbulb, faMoneyBillWave, faCalculator, faCalendarAlt, faCheckCircle,
+  faNewspaper, faList, faExpand, faEllipsisH, faCaretUp, faCaretDown, faMinus,
+  faChevronUp, faRobot, faCommentDots
+} from '@fortawesome/free-solid-svg-icons';
+
+// Add all icons to the library
+library.add(
+  faShieldAlt, faTachometerAlt, faChartLine, faBell, faUsers, faCog, 
+  faChevronDown, faCalendar, faFileExport, faGlobe, faExclamationTriangle,
+  faCreditCard, faChartPie, faFilter, faIndustry, faSyncAlt, faMapMarkedAlt,
+  faLayerGroup, faGavel, faPrint, faWallet, faBullseye, faDollarSign, faMedal,
+  faTrophy, faLightbulb, faMoneyBillWave, faCalculator, faCalendarAlt, faCheckCircle,
+  faNewspaper, faList, faExpand, faEllipsisH, faCaretUp, faCaretDown, faMinus,
+  faChevronUp, faRobot, faCommentDots
+);
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [results, setResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const location = useLocation();
+  const [activePage, setActivePage] = useState('dashboard');
 
-  const handleSearch = async () => {
-    setError(null);
-    if (!searchTerm.trim()) {
-      setError('Please enter a search term');
-      return;
+  // Sync activePage with the current route
+  useEffect(() => {
+    if (location.pathname.startsWith('/dashboard') || location.pathname === '/') {
+      setActivePage('dashboard');
+    } else if (location.pathname.startsWith('/market-trends')) {
+      setActivePage('market-trends');
+    } else if (location.pathname.startsWith('/casses')) {
+      setActivePage('casses');
+    } else if (location.pathname.startsWith('/manage-user-data')) {
+      setActivePage('manage-user-data');
+    } else if (location.pathname.startsWith('/model-feedback')) {
+      setActivePage('model-feedback');
+    } else if (location.pathname.startsWith('/model-managment')) {
+      setActivePage('model-managment');
+    } else if (location.pathname.startsWith('/settings')) {
+      setActivePage('settings');
     }
-
-    setIsLoading(true);
-
-    try {
-      const response = await axios.post('http://localhost:5000/api/search', {
-        query: searchTerm
-      });
-      setResults(response.data);
-    } catch (err) {
-      setError(err.response?.data?.error || 'Failed to search');
-      setResults([]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  }, [location.pathname]);
 
   return (
-    <div className="app">
-      <h1>Supabase Search</h1>
-
-      <div className="search-container">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-          placeholder="Enter search term..."
-        />
-        <button onClick={handleSearch} disabled={isLoading}>
-          {isLoading ? 'Searching...' : 'Search'}
-        </button>
-      </div>
-
-      {error && <div className="error">{error}</div>}
-
-      <div className="results">
-        {isLoading ? (
-          <div className="loading">Loading...</div>
-        ) : results.length > 0 ? (
-          results.map((item) => (
-            <div key={item.id} className="result-item">
-              <h3>{item.name}</h3>
-              {item.description && <p>{item.description}</p>}
-              {item.price && <p>Price: ${item.price}</p>}
-            </div>
-          ))
-        ) : (
-          !error && <p>No results found</p>
-        )}
+    <div className="App">
+      <TopNavigation 
+        activePage={activePage} 
+        onPageChange={setActivePage} 
+      />
+      <div className="main-content p-6 max-w-7xl mx-auto">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <DashboardProvider>
+                <DashboardPage setActivePage={setActivePage} />
+              </DashboardProvider>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <DashboardProvider>
+                <DashboardPage setActivePage={setActivePage} />
+              </DashboardProvider>
+            }
+          />
+          <Route path="/market-trends" element={<MarketTrends />} />
+          <Route path="/casses" element={<CassesPage />} />
+          <Route path="/manage-user-data" element={<ManageUserDataPage />} />
+          <Route path="/model-feedback" element={<ModelFeedback />} />
+          <Route path="/model-managment" element={<ModelManagment />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Routes>
       </div>
     </div>
   );
 }
 
-export default App; // <--- THIS LINE IS CRUCIAL!
+export default App;
