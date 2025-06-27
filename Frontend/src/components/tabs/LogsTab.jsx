@@ -3,7 +3,7 @@ import GlobalCard from '../ui/GlobalCard'
 import { LogItem, LogList } from '../ui/log-item-model'
 import { Button } from '../ui/button-model'
 import { RiskBadge } from '../ui/risk-badge-model'
-import { Dashboard, DashboardCard } from '../ui/dashboard-model'
+import { Dashboard } from '../ui/dashboard-model'
 import { ClipboardList, Filter, Search, Calendar } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
@@ -105,8 +105,7 @@ const LogsTab = () => {
       </div>
       <Dashboard>
         {/* Filter Controls */}
-        <DashboardCard span={4}>
-          <GlobalCard icon={<Filter className="h-5 w-5" />} title="Filter & Search">
+          <GlobalCard span={4} icon={<Filter className="h-5 w-5" />} title="Filter & Search">
             <div className="space-y-4">
               {/* Search */}
               <div className="relative">
@@ -165,10 +164,8 @@ const LogsTab = () => {
               </div>
             </div>
           </GlobalCard>
-        </DashboardCard>
         {/* Log Entries */}
-        <DashboardCard span={4}>
-          <GlobalCard icon={<ClipboardList className="h-5 w-5" />} title={`Recent Log Entries (${filteredLogs.length})`}>
+          <GlobalCard span={4} icon={<ClipboardList className="h-5 w-5" />} title={`Recent Log Entries (${filteredLogs.length})`}>
             <LogList maxHeight="max-h-96">
               {filteredLogs.map((log) => (
                 <LogItem
@@ -188,7 +185,6 @@ const LogsTab = () => {
               )}
             </LogList>
           </GlobalCard>
-        </DashboardCard>
       </Dashboard>
     </div>
   )

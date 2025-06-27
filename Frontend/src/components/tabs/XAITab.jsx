@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import GlobalCard from '../ui/GlobalCard'
 import GlobalTab from '../ui/GlobalTab'
-import { Dashboard, DashboardCard } from '../ui/dashboard-model'
+import { Dashboard } from '../ui/dashboard-model'
 import { ShapChart } from '../charts/ShapChart'
 import { Microscope, ScatterChart, Percent, List } from 'lucide-react'
 
@@ -70,16 +70,14 @@ const XAITab = () => {
       </h3>
       {/* XAI Content */}
       <Dashboard>
-        <DashboardCard span={2}>
-          <GlobalCard icon={<ScatterChart className="h-5 w-5" />} title="SHAP Values: Txn Amt vs V284">
+          <GlobalCard span={2} icon={<ScatterChart className="h-5 w-5" />} title="SHAP Values: Txn Amt vs V284">
             <ShapChart height={250} />
             <p className="text-xs text-muted-foreground mt-3">
               SHAP interaction plot showing how Transaction Amount and feature V284 jointly influence predictions.
             </p>
           </GlobalCard>
-        </DashboardCard>
-        <DashboardCard span={2}>
-          <GlobalCard icon={<Percent className="h-5 w-5" />} title="Prediction Probabilities Distribution">
+
+          <GlobalCard span={2} icon={<Percent className="h-5 w-5" />} title="Prediction Probabilities Distribution">
             <div className="h-64 flex items-center justify-center bg-muted/10 rounded">
               <div className="text-center">
                 <div className="text-4xl mb-2">📊</div>
@@ -95,9 +93,8 @@ const XAITab = () => {
               Distribution of prediction probabilities for recent samples, highlighting model confidence.
             </p>
           </GlobalCard>
-        </DashboardCard>
-        <DashboardCard span={4}>
-          <GlobalCard icon={<List className="h-5 w-5" />} title="Feature Value & SHAP Impact">
+
+          <GlobalCard span={4} icon={<List className="h-5 w-5" />} title="Feature Value & SHAP Impact">
             <p className="text-sm mb-4">
               Top 5 features impacting a sample prediction (Placeholder Transaction ID: TXN123456789):
             </p>
@@ -126,7 +123,6 @@ const XAITab = () => {
               </table>
             </div>
           </GlobalCard>
-        </DashboardCard>
       </Dashboard>
     </div>
   )

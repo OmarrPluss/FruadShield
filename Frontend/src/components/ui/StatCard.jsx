@@ -9,10 +9,10 @@ const StatCard = ({
   className = '' 
 }) => {
   const gradients = {
-    blue: 'gradient-blue',
-    purple: 'gradient-purple',
-    green: 'gradient-green',
-    yellow: 'gradient-yellow',
+    blue: 'bg-gradient-blue',
+    purple: 'bg-gradient-purple',
+    green: 'bg-gradient-green',
+    yellow: 'bg-gradient-yellow',
   };
 
   const iconColors = {

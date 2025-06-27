@@ -36,6 +36,12 @@ module.exports = {
       backgroundColor: {
         'highlight': 'rgba(93, 142, 255, 0.15)',
       },
+      backgroundImage: {
+        'gradient-blue': 'linear-gradient(135deg, #5D8EFF 0%, #3A6FE8 100%)',
+        'gradient-purple': 'linear-gradient(135deg, #7B6CFF 0%, #A259FF 100%)',
+        'gradient-green': 'linear-gradient(135deg, #43E97B 0%, #38F9D7 100%)',
+        'gradient-yellow': 'linear-gradient(135deg, #F9D423 0%, #FF4E50 100%)',
+      },
       boxShadow: {
         'card': '0 4px 12px rgba(0, 0, 0, 0.15)',
         'card-hover': '0 8px 20px rgba(0, 0, 0, 0.25)',

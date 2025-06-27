@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import GlobalCard from '../components/ui/GlobalCard';
-import Button from '../components/ui/Button';
+import GlobalButton from '../components/ui/GlobalButton';
 import StatusDisplay from '../components/ui/StatusDisplay';
 
 const CaseView = () => {
@@ -100,15 +100,17 @@ const CaseView = () => {
               <option value="REVIEW">Review</option>
               <option value="BLOCK">Block</option>
             </select>
-            <Button variant="secondary">
-              <i className="fas fa-filter mr-2"></i>
-              Apply Filters
-            </Button>
+            <GlobalButton 
+              icon="filter"
+              title="Apply Filters"
+              onClick={() => {/* filter logic here */}} 
+            />
           </div>
-          <Button>
-            <i className="fas fa-plus-circle mr-2"></i>
-            Add New Rule
-          </Button>
+          <GlobalButton 
+            icon="plus-circle"
+            title="Add New Rule"
+            onClick={() => {/* add rule logic here */}} 
+          />
         </div>
         {/* Rules Table */}
         <div className="overflow-x-auto">
@@ -145,15 +147,9 @@ const CaseView = () => {
                   <td className="p-3 text-sm border-b border-[var(--divider-color)]">{rule.modified}</td>
                   <td className="p-3 text-sm border-b border-[var(--divider-color)] text-right">
                     <div className="flex justify-end space-x-1">
-                      <Button variant="secondary" size="sm">
-                        <i className="fas fa-edit"></i>
-                      </Button>
-                      <Button variant={rule.status === 'active' ? 'warning' : 'positive'} size="sm">
-                        <i className={`fas ${rule.status === 'active' ? 'fa-power-off' : 'fa-play-circle'}`}></i>
-                      </Button>
-                      <Button variant="danger" size="sm">
-                        <i className="fas fa-trash-alt"></i>
-                      </Button>
+                      <GlobalButton icon="edit" title="" onClick={() => {/* edit logic */}} width={32} />
+                      <GlobalButton icon={rule.status === 'active' ? 'power-off' : 'play-circle'} title="" onClick={() => {/* toggle logic */}} width={32} />
+                      <GlobalButton icon="trash-alt" title="" onClick={() => {/* delete logic */}} width={32} />
                     </div>
                   </td>
                 </tr>

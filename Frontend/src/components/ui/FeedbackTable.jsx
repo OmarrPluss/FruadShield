@@ -1,4 +1,5 @@
 import React from 'react';
+import GlobalButton from './GlobalButton';
 
 const FeedbackTable = ({ data }) => {
   return (
@@ -25,7 +26,7 @@ const FeedbackTable = ({ data }) => {
             </td>
             <td>{item.priority}</td>
             <td>
-              <button className="btn btn-primary btn-sm">View</button>
+              <GlobalButton icon="eye" title="View" width={70} />
             </td>
           </tr>
         ))}

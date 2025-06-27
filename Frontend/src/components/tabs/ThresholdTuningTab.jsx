@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import GlobalCard from '../ui/GlobalCard'
 import GlobalTab from '../ui/GlobalTab'
-import { Dashboard, DashboardCard } from '../ui/dashboard-model'
+import { Dashboard } from '../ui/dashboard-model'
 import { Button } from '../ui/button-model'
 import { Settings, History, Save, BookOpen, Wrench, GraduationCap } from 'lucide-react'
 
@@ -77,8 +77,7 @@ const ThresholdTuningTab = () => {
 
       {/* Threshold Tuning Content */}
       <Dashboard>
-        <DashboardCard span={2}>
-          <GlobalCard icon={<Settings className="h-5 w-5" />} title="Current Threshold & Adjuster">
+          <GlobalCard span={2} icon={<Settings className="h-5 w-5" />} title="Current Threshold & Adjuster">
             <div className="space-y-6">
               <div className="bg-muted/10 p-4 rounded-lg">
                 <div className="flex items-center justify-between mb-4">
@@ -110,10 +109,8 @@ const ThresholdTuningTab = () => {
               </Button>
             </div>
           </GlobalCard>
-        </DashboardCard>
 
-        <DashboardCard span={2}>
-          <GlobalCard icon={<History className="h-5 w-5" />} title="Threshold Change History">
+          <GlobalCard span={2} icon={<History className="h-5 w-5" />} title="Threshold Change History">
             <div className="max-h-64 overflow-y-auto">
               <table className="w-full text-sm">
                 <thead className="sticky top-0 bg-card">
@@ -139,10 +136,8 @@ const ThresholdTuningTab = () => {
               </table>
             </div>
           </GlobalCard>
-        </DashboardCard>
 
-        <DashboardCard span={4}>
-          <GlobalCard icon={<Settings className="h-5 w-5" />} title="Threshold Optimization Table (Example)">
+          <GlobalCard span={4} icon={<Settings className="h-5 w-5" />} title="Threshold Optimization Table (Example)">
             <p className="text-xs text-muted-foreground mb-4">
               Simulated impact of different thresholds on key metrics for Stacking Ensemble:
             </p>
@@ -178,7 +173,6 @@ const ThresholdTuningTab = () => {
               </table>
             </div>
           </GlobalCard>
-        </DashboardCard>
       </Dashboard>
       <style jsx>{`
         .slider::-webkit-slider-thumb {

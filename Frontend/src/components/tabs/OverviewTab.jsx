@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import GlobalCard from '../ui/GlobalCard'
 import GlobalTab from '../ui/GlobalTab'
-import { Dashboard, DashboardCard } from '../ui/dashboard-model'
+import { Dashboard } from '../ui/dashboard-model'
 import { ModelEvaluationChart } from '../charts/ModelEvaluationChart'
 import { Info, BarChart3 } from 'lucide-react'
 
@@ -80,8 +80,7 @@ const OverviewTab = () => {
       />
       {/* Model Overview Content */}
       <Dashboard>
-        <DashboardCard span={2}>
-          <GlobalCard title={`${currentModel.name} Details`} icon={Info}>
+          <GlobalCard title={`${currentModel.name} Details`} icon={Info} span={2}>
             <div className="space-y-4">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Name:</span>
@@ -113,10 +112,8 @@ const OverviewTab = () => {
               </div>
             </div>
           </GlobalCard>
-        </DashboardCard>
 
-        <DashboardCard span={2}>
-          <GlobalCard title="Confusion Matrix" icon={BarChart3}>
+          <GlobalCard title="Confusion Matrix" icon={BarChart3} span={2}>
             <div className="mb-4">
               <p className="text-sm font-medium mb-2">Text Representation:</p>
               <pre className="text-xs bg-muted/20 p-3 rounded text-muted-foreground">
@@ -149,13 +146,10 @@ Fraud       | FP: ${currentModel.confusionMatrix.fp}           | TP: ${currentMo
               </div>
             </div>
           </GlobalCard>
-        </DashboardCard>
 
-        <DashboardCard span={4}>
-          <GlobalCard title="Model Evaluation" icon={BarChart3}>
+          <GlobalCard title="Model Evaluation" icon={BarChart3} span={4}>
             <ModelEvaluationChart height={250} />
           </GlobalCard>
-        </DashboardCard>
       </Dashboard>
     </div>
   )

@@ -12,7 +12,7 @@ const Cases = () => {
   const [activeTab, setActiveTab] = React.useState('case-view');
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div>
       <PageHeader 
         title="Cases Management" 
         description="Manage fraud detection rules and review case overrules"

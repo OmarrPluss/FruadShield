@@ -26,7 +26,7 @@ const MetricItem = ({
         {value}
       </div>
       <div className="label">
-        {icon && <span className="metric-icon">{icon}</span>}
+        {/* {icon && <span className="metric-icon">{icon}</span>} */}
         {label}
       </div>
     </div>

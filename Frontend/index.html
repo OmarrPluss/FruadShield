@@ -18,6 +18,19 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/index.jsx"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const updateBackgroundColor = () => {
+          const isDarkMode = document.body.classList.contains('dark');
+          document.body.style.backgroundColor = isDarkMode ? '#1A1A2A' : '#F3F4F6';
+        };
+
+        updateBackgroundColor();
+
+        const observer = new MutationObserver(updateBackgroundColor);
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+      });
+    </script>
   </body>
 </html>
 

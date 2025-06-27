@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import GlobalCard from '../ui/GlobalCard'
 import GlobalTab from '../ui/GlobalTab'
-import { Dashboard, DashboardCard } from '../ui/dashboard-model'
+import { Dashboard } from '../ui/dashboard-model'
 import  StatusDisplay  from '../ui/StatusDisplay'
 import SparklineChart from '../charts/SparklineChart'
 import { Power, Activity, Bell } from 'lucide-react'
@@ -70,8 +70,7 @@ const OperationalTab = () => {
 
       {/* Operational Content */}
       <Dashboard>
-        <DashboardCard span={2}>
-          <GlobalCard icon={<Power className="h-5 w-5" />} title="Deployment Status">
+          <GlobalCard span={2} icon={<Power className="h-5 w-5" />} title="Deployment Status">
             <div className="space-y-9">
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Status:</span>
@@ -95,10 +94,8 @@ const OperationalTab = () => {
               </div>
             </div>
           </GlobalCard>
-        </DashboardCard>
 
-        <DashboardCard span={2}>
-          <GlobalCard icon={<Activity className="h-10 w-20" />} title="Resource Utilization">
+          <GlobalCard span={2} icon={<Activity className="h-10 w-20" />} title="Resource Utilization">
             <div className="space-y-11">
               <div>
                 <div className="flex justify-between items-center mb-2">
@@ -126,10 +123,8 @@ const OperationalTab = () => {
               </div>
             </div>
           </GlobalCard>
-        </DashboardCard>
 
-        <DashboardCard span={4}>
-          <GlobalCard icon={<Bell className="h-5 w-5" />} title="Active Alerts">
+          <GlobalCard span={4} icon={<Bell className="h-5 w-5" />} title="Active Alerts">
             <div className="space-y-3 max-h-64 overflow-y-auto">
               {currentModel.alerts.length > 0 ? (
                 currentModel.alerts.map((alert, index) => (
@@ -153,7 +148,6 @@ const OperationalTab = () => {
               )}
             </div>
           </GlobalCard>
-        </DashboardCard>
       </Dashboard>
     </div>
   )

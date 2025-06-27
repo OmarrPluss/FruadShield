@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import GlobalCard from '../components/ui/GlobalCard';
-import Button from '../components/ui/Button';
+import GlobalButton from '../components/ui/GlobalButton';
 import ToggleSwitch from '../components/ui/ToggleSwitch';
 import RangeSlider from '../components/ui/RangeSlider';
 import { Select } from '../components/ui/select';
@@ -87,7 +87,7 @@ const SystemAdministrationPage = () => {
   ];
 
   return (
-    <main className="p-6 space-y-8">
+    <main className="p-6 space-y-8 max-w-7xl mx-auto">
       <FeedbackMessage message={feedbackMessage} />
 
       {/* System Overview */}
@@ -160,26 +160,23 @@ const SystemAdministrationPage = () => {
               </div>
               
               <div className="flex flex-wrap gap-3 pt-2">
-                <Button 
-                  icon="fas fa-sync-alt"
+                <GlobalButton 
+                  icon="sync-alt"
+                  title="Retrain Model"
                   onClick={() => showFeedback('Model retraining initiated. This may take several minutes.')}
-                >
-                  Retrain Model
-                </Button>
-                <Button 
-                  variant="warning"
-                  icon="fas fa-history"
+                />
+                <GlobalButton 
+                  icon="history"
+                  title="Rollback Model"
                   onClick={() => openModal('modelRollback')}
-                >
-                  Rollback Model
-                </Button>
-                <Button 
-                  variant="purple"
-                  icon="fas fa-sliders-h"
+                  variant="warning"
+                />
+                <GlobalButton 
+                  icon="sliders-h"
+                  title="Advanced Config"
                   onClick={() => openModal('modelConfig')}
-                >
-                  Advanced Config
-                </Button>
+                  variant="purple"
+                />
               </div>
             </div>
           </GlobalCard>
@@ -211,27 +208,24 @@ const SystemAdministrationPage = () => {
               />
               
               <div className="flex flex-wrap gap-3 pt-2">
-                <Button 
-                  variant="success"
-                  icon="fas fa-tasks"
+                <GlobalButton 
+                  icon="tasks"
+                  title="Bulk Review"
                   onClick={() => openModal('bulkReview')}
-                >
-                  Bulk Review
-                </Button>
-                <Button 
-                  variant="indigo"
-                  icon="fas fa-search"
+                  variant="success"
+                />
+                <GlobalButton 
+                  icon="search"
+                  title="Manual Investigation"
                   onClick={() => openModal('investigation')}
-                >
-                  Manual Investigation
-                </Button>
-                <Button 
-                  variant="secondary"
-                  icon="fas fa-file-export"
+                  variant="indigo"
+                />
+                <GlobalButton 
+                  icon="file-export"
+                  title="Export Cases"
                   onClick={() => showFeedback('Case export started. You will receive an email when ready.')}
-                >
-                  Export Cases
-                </Button>
+                  variant="secondary"
+                />
               </div>
             </div>
           </GlobalCard>
@@ -274,19 +268,17 @@ const SystemAdministrationPage = () => {
               </div>
               
               <div className="flex flex-wrap gap-3 pt-2">
-                <Button 
-                  icon="fas fa-key"
+                <GlobalButton 
+                  icon="key"
+                  title="Change Password"
                   onClick={() => openModal('password')}
-                >
-                  Change Password
-                </Button>
-                <Button 
-                  variant="danger"
-                  icon="fas fa-sign-out-alt"
+                />
+                <GlobalButton 
+                  icon="sign-out-alt"
+                  title="Invalidate Sessions"
                   onClick={() => showFeedback('All active sessions invalidated.')}
-                >
-                  Invalidate Sessions
-                </Button>
+                  variant="danger"
+                />
               </div>
             </div>
           </GlobalCard>
@@ -319,20 +311,18 @@ const SystemAdministrationPage = () => {
               />
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                <Button 
-                  variant="success"
-                  icon="fas fa-file-export"
+                <GlobalButton 
+                  icon="file-export"
+                  title="Export Logs"
                   onClick={() => showFeedback('Logs exported successfully.')}
-                >
-                  Export Logs
-                </Button>
-                <Button 
-                  variant="danger"
-                  icon="fas fa-trash-alt"
+                  variant="success"
+                />
+                <GlobalButton 
+                  icon="trash-alt"
+                  title="Purge Logs"
                   onClick={() => openModal('purgeLog')}
-                >
-                  Purge Logs
-                </Button>
+                  variant="danger"
+                />
               </div>
             </div>
           </GlobalCard>
@@ -345,45 +335,37 @@ const SystemAdministrationPage = () => {
         icon="fas fa-tools text-orange-400"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Button
+          <GlobalButton
+            icon="heartbeat"
+            title="System Health"
+            onClick={() => openModal('healthCheck')}
             variant="primary"
             className="p-4 h-auto flex-col"
-            onClick={() => openModal('healthCheck')}
-          >
-            <i className="fas fa-heartbeat text-2xl mb-2"></i>
-            <span className="font-medium">System Health</span>
-            <span className="text-xs text-blue-200 mt-1">Run diagnostics</span>
-          </Button>
+          />
           
-          <Button
+          <GlobalButton
+            icon="database"
+            title="Backup"
+            onClick={() => openModal('backup')}
             variant="purple"
             className="p-4 h-auto flex-col"
-            onClick={() => openModal('backup')}
-          >
-            <i className="fas fa-database text-2xl mb-2"></i>
-            <span className="font-medium">Backup</span>
-            <span className="text-xs text-purple-200 mt-1">Create system backup</span>
-          </Button>
+          />
           
-          <Button
+          <GlobalButton
+            icon="cloud-download-alt"
+            title="Updates"
+            onClick={() => openModal('update')}
             variant="success"
             className="p-4 h-auto flex-col"
-            onClick={() => openModal('update')}
-          >
-            <i className="fas fa-cloud-download-alt text-2xl mb-2"></i>
-            <span className="font-medium">Updates</span>
-            <span className="text-xs text-green-200 mt-1">Check for updates</span>
-          </Button>
+          />
           
-          <Button
+          <GlobalButton
+            icon="plug"
+            title="API Console"
+            onClick={() => openModal('api')}
             variant="warning"
             className="p-4 h-auto flex-col"
-            onClick={() => openModal('api')}
-          >
-            <i className="fas fa-plug text-2xl mb-2"></i>
-            <span className="font-medium">API Console</span>
-            <span className="text-xs text-yellow-200 mt-1">Test endpoints</span>
-          </Button>
+          />
         </div>
       </GlobalCard>
 
@@ -392,12 +374,11 @@ const SystemAdministrationPage = () => {
         <div className="text-sm text-gray-400">
           <i className="fas fa-info-circle mr-1"></i> Changes are automatically saved where indicated
         </div>
-        <Button 
-          icon="fas fa-save"
+        <GlobalButton 
+          icon="save"
+          title="Save All Settings"
           onClick={() => showFeedback('All settings saved successfully.')}
-        >
-          Save All Settings
-        </Button>
+        />
       </div>
 
       {/* Modals */}
@@ -412,8 +393,8 @@ const SystemAdministrationPage = () => {
           placeholder="Select version"
         />
         <div className="flex gap-3 mt-6">
-          <Button variant="warning">Rollback</Button>
-          <Button variant="outline" onClick={() => closeModal('modelRollback')}>Cancel</Button>
+          <GlobalButton variant="warning">Rollback</GlobalButton>
+          <GlobalButton variant="outline" onClick={() => closeModal('modelRollback')}>Cancel</GlobalButton>
         </div>
       </Modal>
 
@@ -432,8 +413,8 @@ const SystemAdministrationPage = () => {
           />
         </div>
         <div className="flex gap-3 mt-6">
-          <Button>Start Investigation</Button>
-          <Button variant="outline" onClick={() => closeModal('investigation')}>Cancel</Button>
+          <GlobalButton>Start Investigation</GlobalButton>
+          <GlobalButton variant="outline" onClick={() => closeModal('investigation')}>Cancel</GlobalButton>
         </div>
       </Modal>
 

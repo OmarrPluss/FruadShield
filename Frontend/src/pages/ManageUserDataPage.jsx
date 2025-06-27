@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import GlobalTab from '../components/ui/GlobalTab';
 import GlobalCard from '../components/ui/GlobalCard';
-import Button from '../components/ui/Button';
+import GlobalButton from '../components/ui/GlobalButton';
 import RiskBadge from '../components/ui/RiskBadge';
 import FraudVolumeChart from '../components/charts/FraudVolumeChart';
 import '../App.css';
@@ -108,12 +108,8 @@ const UserManagement = () => {
             </p>
           </div>
           <div className="flex justify-end gap-3">
-            <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
-              Cancel
-            </Button>
-            <Button variant="danger" onClick={confirmDeleteUser}>
-              Delete User
-            </Button>
+            <GlobalButton icon="times" title="Cancel" onClick={() => setShowDeleteModal(false)} />
+            <GlobalButton icon="trash-alt" title="Delete User" onClick={confirmDeleteUser} />
           </div>
         </div>
       </div>
@@ -164,10 +160,6 @@ const UserManagement = () => {
   const UserListSidebar = () => (
     <GlobalCard icon={<i className="fas fa-search" />} title="Users" className="h-[calc(100vh-100px)] sticky top-20 overflow-y-auto mb-6">
       {/* Divider directly under Users header */}
-      <div className="border-b border-border/50 mb-4" />
-      <div className="text-lg font-semibold mb-4 text-white flex justify-between items-center">
-        <i className="fas fa-sliders-h text-primary cursor-pointer" title="Filters" onClick={handleFilterSettings}></i>
-      </div>
       <div className="mb-5 relative">
         <input 
           type="text" 
@@ -239,16 +231,9 @@ const UserManagement = () => {
       </div>
       
       <div className="flex gap-2.5 mt-5">
-        <Button variant="primary" onClick={handleSaveChanges}>
-          <i className="fas fa-save"></i> 
-          {saveStatus || 'Save Changes'}
-        </Button>
-        <Button variant="secondary" onClick={handleResetPassword}>
-          <i className="fas fa-lock"></i> Reset Password
-        </Button>
-        <Button variant="danger" onClick={handleDeleteUser}>
-          <i className="fas fa-trash-alt"></i> Delete User
-        </Button>
+        <GlobalButton icon="save" title={saveStatus || 'Save Changes'} onClick={handleSaveChanges} />
+        <GlobalButton icon="lock" title="Reset Password" onClick={handleResetPassword} />
+        <GlobalButton icon="trash-alt" title="Delete User" onClick={handleDeleteUser} />
       </div>
       <div className="border-b border-border/50 mt-6" />
     </GlobalCard>
@@ -510,15 +495,9 @@ const UserManagement = () => {
           </div>
 
           <div className="flex gap-2 mt-6">
-            <Button variant="primary">
-              <i className="fas fa-edit"></i> Update Case
-            </Button>
-            <Button variant="secondary">
-              <i className="fas fa-download"></i> Export Report
-            </Button>
-            <Button variant="danger">
-              <i className="fas fa-ban"></i> Close Case
-            </Button>
+            <GlobalButton icon="edit" title="Update Case" />
+            <GlobalButton icon="download" title="Export Report" />
+            <GlobalButton icon="ban" title="Close Case" />
           </div>
         </div>
       </GlobalCard>

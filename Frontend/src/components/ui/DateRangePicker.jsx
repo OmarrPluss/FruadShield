@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import GlobalButton from './GlobalButton';
 
 const DateRangePicker = ({ onChange }) => {
   const [startDate, setStartDate] = useState('');
@@ -39,13 +40,11 @@ const DateRangePicker = ({ onChange }) => {
   
   return (
     <div className="relative">
-      <button 
-        className="bg-white bg-opacity-5 border border-divider-color text-text-light py-2 px-3 rounded-md flex items-center gap-2"
+      <GlobalButton 
         onClick={() => setIsOpen(!isOpen)}
-      >
-        <FontAwesomeIcon icon="calendar-alt" />
-        <span>{formatDateForDisplay(startDate, endDate)}</span>
-      </button>
+        icon="calendar-alt"
+        title={formatDateForDisplay(startDate, endDate)}
+      />
       
       {isOpen && (
         <div className="absolute top-full mt-2 right-0 bg-card-color border border-divider-color rounded-md shadow-lg p-4 z-10 w-72">

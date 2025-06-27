@@ -23,6 +23,7 @@ const GlobalTab = ({
   children,
   className = '',
   variant,
+  mode,
 }) => {
   // Detect style variant: classic if tab objects have 'name', default if 'label'
   const isObjectTabs = Array.isArray(tabs) && tabs.length > 0 && typeof tabs[0] === 'object';
@@ -57,6 +58,35 @@ const GlobalTab = ({
     if (onTabChange) onTabChange(indexOrId);
   };
 
+  const [effectiveMode, setEffectiveMode] = useState(() => (typeof mode === 'string' ? mode : defaultGlobalLightMode));
+
+  useEffect(() => {
+    if (typeof mode === 'string') {
+      setEffectiveMode(mode);
+    } else {
+      const updateMode = () => {
+        const newMode = document.body.classList.contains('dark') ? 'dark' : 'light';
+        setEffectiveMode(newMode);
+        defaultGlobalLightMode = newMode;
+      };
+      updateMode();
+      const observer = new MutationObserver(updateMode);
+      observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+      return () => observer.disconnect();
+    }
+  }, [mode]);
+
+  const theme = {
+    light: {
+      title: 'text-black',
+    },
+    dark: {
+      title: 'text-gray-500',
+    },
+  };
+
+  const currentTheme = theme[effectiveMode] || theme.light;
+
   return (
     <div className={className}>
       {/* Classic style (matches layout/TabContainer.jsx) */}
@@ -68,7 +98,7 @@ const GlobalTab = ({
               className={`py-3 px-5 cursor-pointer font-medium relative transition-all duration-300 ${
                 activeTab === tab.id
                   ? 'text-primary-accent'
-                  : 'text-text-muted hover:text-text-light'
+                  : `${currentTheme.title} hover:text-text-light`
               }`}
               onClick={() => handleTabChange(tab.id)}
             >
@@ -89,7 +119,7 @@ const GlobalTab = ({
               className={`px-5 py-2.5 cursor-pointer border-b-2 border-transparent transition-all duration-300 font-medium text-sm flex items-center gap-2 ${
                 getActiveIndex() === idx
                   ? 'border-primary text-primary'
-                  : 'text-foreground hover:text-primary'
+                  : `${currentTheme.title} hover:text-primary`
               }`}
               onClick={() => handleTabChange(tab.id ?? idx)}
             >
@@ -108,7 +138,7 @@ const GlobalTab = ({
               className={`px-5 py-2.5 cursor-pointer border-b-2 border-transparent transition-all duration-300 font-medium text-sm ${
                 getActiveIndex() === idx
                   ? 'border-primary text-primary'
-                  : 'text-foreground hover:text-primary'
+                  : `${currentTheme.title} hover:text-primary`
               }`}
               onClick={() => handleTabChange(idx)}
             >
@@ -135,5 +165,8 @@ const GlobalTab = ({
  * Usage: <TabPanel label="Tab Name">Content</TabPanel>
  */
 export const TabPanel = ({ children }) => <div>{children}</div>;
+
+// Global variable to hold the current mode
+export let defaultGlobalLightMode = (typeof window !== 'undefined' && document.body && document.body.classList.contains('dark')) ? 'dark' : 'light';
 
 export default GlobalTab;

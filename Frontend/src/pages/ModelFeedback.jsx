@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import  Button  from '../components/ui/Button';
+import GlobalButton from '../components/ui/GlobalButton';
 import  GlobalCard from '../components/ui/GlobalCard';
 import  StatusBadge  from '../components/ui/StatusBadge';
 import  SummaryItem  from '../components/ui/SummaryItem';
@@ -212,12 +212,8 @@ const ModelFeedbackPage = () => {
                       </div>
                       <FeedbackTable data={feedbackData} />
                       <div className="mt-6 flex gap-4 flex-wrap">
-                        <Button variant="primary" icon="fas fa-plus">
-                          Submit New Feedback
-                        </Button>
-                        <Button variant="secondary" icon="fas fa-download">
-                          Export Feedback Report
-                        </Button>
+                        <GlobalButton icon="plus" title="Submit New Feedback" />
+                        <GlobalButton icon="download" title="Export Feedback Report" />
                       </div>
                     </GlobalCard>
                   </div>
