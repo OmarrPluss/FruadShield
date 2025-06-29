@@ -11,7 +11,7 @@ const USER_TYPE_ROUTES = {
 };
 const showUserTypeSwitcher = true; // Set to false to disable user type switching
 
-const UserMenu = ({ user, onUserTypeChange }) => {
+const UserMenu = ({ user, onUserTypeChange, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showUserTypeMenu, setShowUserTypeMenu] = useState(false);
   const menuRef = useRef(null);
@@ -53,6 +53,26 @@ const UserMenu = ({ user, onUserTypeChange }) => {
     if (USER_TYPE_ROUTES[type]) navigate(USER_TYPE_ROUTES[type]);
   };
 
+  const handleLogout = () => {
+    setIsOpen(false);
+    if (onLogout) {
+      onLogout();
+    } else {
+      // Default logout behavior - redirect to login page
+      navigate('/');
+    }
+  };
+
+  const handleProfileClick = () => {
+    setIsOpen(false);
+    navigate('/profile');
+  };
+
+  const handleSettingsClick = () => {
+    setIsOpen(false);
+    navigate('/settings');
+  };
+
   // Open submenu on right click only for Profile
   const handleProfileContextMenu = (e) => {
     if (!showUserTypeSwitcher) return;
@@ -88,14 +108,14 @@ const UserMenu = ({ user, onUserTypeChange }) => {
           <ul className="list-none m-0 p-0">
             <li
               className="px-4 py-2 hover:bg-highlight rounded-md cursor-pointer relative"
-              onClick={() => setShowUserTypeMenu(true)}
+              onClick={handleProfileClick}
             >
               Profile
               {showUserTypeSwitcher && <FontAwesomeIcon icon="chevron-left" className="ml-2 text-xs" />}
             </li>
-            <li className="px-4 py-2 hover:bg-highlight rounded-md cursor-pointer">Settings</li>
+            <li className="px-4 py-2 hover:bg-highlight rounded-md cursor-pointer" onClick={handleSettingsClick}>Settings</li>
             <li className="px-4 py-2 hover:bg-highlight rounded-md cursor-pointer">Help</li>
-            <li className="px-4 py-2 hover:bg-highlight rounded-md cursor-pointer text-danger-accent">Logout</li>
+            <li className="px-4 py-2 hover:bg-highlight rounded-md cursor-pointer text-danger-accent" onClick={handleLogout}>Logout</li>
           </ul>
         </div>
       )}

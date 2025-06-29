@@ -1,5 +1,6 @@
 import React from 'react';
 import GlobalCard from '../components/ui/GlobalCard';
+import InteractiveMap from '../components/ui/InteractiveMap';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -193,16 +194,48 @@ const CaseDetails = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-white/5 rounded p-3">
               <strong className="text-slate-400">Transaction Location:</strong> <span>{data.caseTxnLocationText}</span>
-              <div className="mt-2 flex flex-col items-center justify-center bg-black/10 border border-slate-700 rounded-lg py-6">
-                <FontAwesomeIcon icon={faMapMarkerAlt} className="text-blue-400 text-2xl mb-2" />
-                <span className="text-xs text-slate-400 text-center">Transaction Location Map Placeholder<br/>({data.caseTxnLocationMapData})</span>
+              <div className="mt-2">
+                <InteractiveMap 
+                  locations={[
+                    {
+                      id: 1,
+                      name: data.caseTxnLocationMapData,
+                      lat: 37.7749,
+                      lng: -122.4194,
+                      type: 'transaction',
+                      risk: 'medium'
+                    }
+                  ]}
+                  height="200px"
+                  showControls={true}
+                  showSearch={false}
+                  onLocationClick={(location) => {
+                    console.log('Transaction location clicked:', location);
+                  }}
+                />
               </div>
             </div>
             <div className="bg-white/5 rounded p-3">
               <strong className="text-slate-400">Merchant Location:</strong> <span>{data.caseMerchantLocationText}</span>
-              <div className="mt-2 flex flex-col items-center justify-center bg-black/10 border border-slate-700 rounded-lg py-6">
-                <FontAwesomeIcon icon={faMapMarkerAlt} className="text-blue-400 text-2xl mb-2" />
-                <span className="text-xs text-slate-400 text-center">Merchant Location Map Placeholder<br/>({data.caseMerchantLocationMapData})</span>
+              <div className="mt-2">
+                <InteractiveMap 
+                  locations={[
+                    {
+                      id: 1,
+                      name: data.caseMerchantLocationMapData,
+                      lat: 46.2044,
+                      lng: 6.1432,
+                      type: 'merchant',
+                      risk: 'high'
+                    }
+                  ]}
+                  height="200px"
+                  showControls={true}
+                  showSearch={false}
+                  onLocationClick={(location) => {
+                    console.log('Merchant location clicked:', location);
+                  }}
+                />
               </div>
             </div>
           </div>

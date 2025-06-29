@@ -133,6 +133,24 @@ const transactionSummary = [
 ];
 
 const AnalystDashboard = () => {
+  // Button click handlers
+  const handleInvestigateCase = (caseId) => {
+    console.log('Investigating case:', caseId);
+    // Navigate to case details or open investigation modal
+    alert(`Opening investigation for ${caseId}`);
+  };
+
+  const handleViewAllAlerts = () => {
+    console.log('Viewing all alerts');
+    // Navigate to alerts page
+    alert('Navigating to all alerts page');
+  };
+
+  const handleTransactionSummaryClick = (item) => {
+    console.log('Transaction summary clicked:', item.label);
+    alert(`Viewing details for ${item.label}`);
+  };
+
   return (
     <div className="min-h-screen bg-transparent text-[#E0E0E0] font-[Poppins,sans-serif]">
       <div className="max-w-6xl mx-auto p-5">
@@ -153,7 +171,12 @@ const AnalystDashboard = () => {
           <GlobalCard title="Recent Alerts">
             <div className="flex justify-between items-center mb-4">
               <span className="font-semibold text-[#4A90E2]">Recent Alerts</span>
-              <a href="#" className="text-[#4A90E2] text-sm hover:opacity-80">View All</a>
+              <button 
+                onClick={handleViewAllAlerts}
+                className="text-[#4A90E2] text-sm hover:opacity-80 cursor-pointer bg-transparent border-none"
+              >
+                View All
+              </button>
             </div>
             <div>
               {alerts.map((alert, idx) => (
@@ -165,7 +188,12 @@ const AnalystDashboard = () => {
                       <span className="text-xs text-[#AAAAAA]">{alert.time}</span>
                     </div>
                   </div>
-                  <button className="border border-[#4A90E2] text-[#4A90E2] px-3 py-1 rounded text-xs font-semibold hover:bg-[#4A90E2] hover:text-white transition">Investigate</button>
+                  <button 
+                    onClick={() => handleInvestigateCase(alert.case)}
+                    className="border border-[#4A90E2] text-[#4A90E2] px-3 py-1 rounded text-xs font-semibold hover:bg-[#4A90E2] hover:text-white transition cursor-pointer"
+                  >
+                    Investigate
+                  </button>
                 </div>
               ))}
             </div>
@@ -176,6 +204,7 @@ const AnalystDashboard = () => {
               {transactionSummary.map((item, idx) => (
                 <div
                   key={idx}
+                  onClick={() => handleTransactionSummaryClick(item)}
                   className={`kpi-item border border-[#333] shadow-md transition cursor-pointer relative overflow-hidden group ${item.boxClass === 'unusual' ? 'hover:border-[#F5A623]' : item.boxClass === 'fraud' ? 'hover:border-[#FF6B6B]' : 'hover:border-[#4A90E2]'}`}
                   style={{ backgroundColor: 'var(--bg-item)' }}
                 >

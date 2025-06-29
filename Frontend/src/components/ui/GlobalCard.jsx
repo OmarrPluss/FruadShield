@@ -44,8 +44,8 @@ const GlobalCard = ({
   // Theme configurations
   const theme = {
     light: {
-      card: 'bg-gray-50 text-gray-700 border-gray-300 hover:shadow-md hover:border-indigo-200',
-      header: 'text-gray-800 border-gray-200',
+      card: 'bg-white text-gray-900 border-gray-200 hover:shadow-md hover:border-indigo-200',
+      header: 'text-gray-900 border-gray-200',
       icon: 'text-blue-500',
       actionButton: 'text-gray-500 hover:bg-gray-100 hover:text-gray-700',
       description: 'text-gray-600',

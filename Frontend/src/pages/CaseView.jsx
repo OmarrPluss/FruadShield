@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import GlobalCard from '../components/ui/GlobalCard';
 import GlobalButton from '../components/ui/GlobalButton';
 import StatusDisplay from '../components/ui/StatusDisplay';
 
 const CaseView = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [priorityFilter, setPriorityFilter] = useState('all');
@@ -150,6 +152,7 @@ const CaseView = () => {
                       <GlobalButton icon="edit" title="" onClick={() => {/* edit logic */}} width={32} />
                       <GlobalButton icon={rule.status === 'active' ? 'power-off' : 'play-circle'} title="" onClick={() => {/* toggle logic */}} width={32} />
                       <GlobalButton icon="trash-alt" title="" onClick={() => {/* delete logic */}} width={32} />
+                      <GlobalButton icon="info-circle" title="Details" onClick={() => navigate(`/case-details/${rule.id}`)} width={32} />
                     </div>
                   </td>
                 </tr>

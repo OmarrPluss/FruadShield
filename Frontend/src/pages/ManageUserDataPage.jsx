@@ -4,6 +4,7 @@ import GlobalCard from '../components/ui/GlobalCard';
 import GlobalButton from '../components/ui/GlobalButton';
 import RiskBadge from '../components/ui/RiskBadge';
 import FraudVolumeChart from '../components/charts/FraudVolumeChart';
+import InteractiveMap from '../components/ui/InteractiveMap';
 import '../App.css';
 
 const UserManagement = () => {
@@ -282,27 +283,54 @@ const UserManagement = () => {
     </GlobalCard>
   );
 
-  const LocationInsightsCard = () => (
-    <GlobalCard title="Location Insights" headerAction onHeaderAction={handleMoreOptions}>
-      <div className="space-y-4">
-        <div>
-          <div className="text-sm text-muted-foreground mb-1">Primary Location</div>
-          <div className="text-base font-medium">{currentUser.primaryLocation}</div>
-        </div>
-        <div>
-          <div className="text-sm text-muted-foreground mb-1">Most Transactions From</div>
-          <div className="text-base font-medium">{currentUser.mostTransactionsFrom}</div>
-        </div>
-        <div className="h-64 w-full rounded-md overflow-hidden mt-4 bg-muted/20 flex items-center justify-center">
-          <div className="text-center">
-            <i className="fas fa-map-marker-alt text-4xl text-muted-foreground mb-2"></i>
-            <p className="text-muted-foreground">Location Map</p>
+  const LocationInsightsCard = () => {
+    // Create location data for the current user
+    const userLocations = [
+      {
+        id: 1,
+        name: currentUser.primaryLocation,
+        lat: 37.7749 + (selectedUser * 0.5), // Simulate different locations
+        lng: -122.4194 + (selectedUser * 0.3),
+        type: 'user',
+        risk: currentUser.risk
+      },
+      {
+        id: 2,
+        name: currentUser.city + ' Transaction Hub',
+        lat: 37.7749 + (selectedUser * 0.3),
+        lng: -122.4194 + (selectedUser * 0.5),
+        type: 'transaction',
+        risk: 'low'
+      }
+    ];
+
+    return (
+      <GlobalCard title="Location Insights" headerAction onHeaderAction={handleMoreOptions}>
+        <div className="space-y-4">
+          <div>
+            <div className="text-sm text-muted-foreground mb-1">Primary Location</div>
+            <div className="text-base font-medium">{currentUser.primaryLocation}</div>
+          </div>
+          <div>
+            <div className="text-sm text-muted-foreground mb-1">Most Transactions From</div>
+            <div className="text-base font-medium">{currentUser.mostTransactionsFrom}</div>
+          </div>
+          <div className="mt-4">
+            <InteractiveMap 
+              locations={userLocations}
+              height="300px"
+              showControls={true}
+              showSearch={false}
+              onLocationClick={(location) => {
+                console.log('Location clicked:', location);
+              }}
+            />
           </div>
         </div>
-      </div>
-      <div className="border-b border-border/50 mt-6" />
-    </GlobalCard>
-  );
+        <div className="border-b border-border/50 mt-6" />
+      </GlobalCard>
+    );
+  };
 
   const TransactionHistoryCard = () => (
     <GlobalCard title="Transaction History" span={3} headerAction onHeaderAction={handleMoreOptions}>

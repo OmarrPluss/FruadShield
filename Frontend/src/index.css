@@ -2,7 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Unified theme variables */
 :root {
+  /* Auth page theme variables */
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --secondary: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --bg: #f9fafb;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --success: #10b981;
+  
+  /* Dashboard theme variables */
+  --bg-color: #f9fafb;
+  --card-color: #ffffff;
+  --nav-color: #ffffff;
+  --primary-accent: #5D8EFF;
+  --secondary-accent: #7B6CFF;
+  --success-accent: #2ECC71;
+  --warning-accent: #F39C12;
+  --danger-accent: #FF5E7D;
+  --text-light: #1f2937;
+  --text-muted: #6b7280;
+  --divider-color: #e5e7eb;
+  --highlight-color: rgba(93, 142, 255, 0.15);
+  --transition-speed: 0.3s;
+}
+
+[data-theme="dark"] {
+  /* Auth page dark theme variables */
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --text: #f9fafb;
+  --text-light: #9ca3af;
+  --bg: #111827;
+  --card-bg: #1f2937;
+  --border: #374151;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+  --success: #10b981;
+  
+  /* Dashboard dark theme variables */
   --bg-color: #1A1A2A;
   --card-color: #25253A;
   --nav-color: #2A2B40;
@@ -18,23 +65,27 @@
   --transition-speed: 0.3s;
 }
 
-body {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+* {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-color);
-  color: var(--text-light);
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-light) !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   line-height: 1.6;
 }
 
-h1, h2, h3, h4 {
-  font-weight: 600;
-  margin: 0 0 0.5em 0;
-}
-
-/* Animation classes */
-.fade-in {
-  animation: fadeIn 0.5s ease;
+/* Custom animations and styles */
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
 }
 
 @keyframes fadeIn {
@@ -42,19 +93,39 @@ h1, h2, h3, h4 {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.bg-gradient-radial {
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+}
+
 @keyframes shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
 
+h1, h2, h3, h4 {
+  font-weight: 600;
+  margin: 0 0 0.5em 0;
+}
+
 /* Custom component classes */
 @layer components {
   .card {
-    @apply bg-card-color rounded-xl p-6 shadow-card border border-opacity-5 border-white relative overflow-hidden transition-all duration-300;
+    @apply rounded-xl p-6 shadow-lg border border-opacity-5 border-white relative overflow-hidden transition-all duration-300;
+    background-color: var(--card-color);
+    color: var(--text-light);
   }
   
   .card:hover {
-    @apply transform -translate-y-1 shadow-card-hover border-primary-accent border-opacity-30;
+    @apply transform -translate-y-1 border-opacity-30;
+    border-color: var(--primary-accent);
   }
   
   .btn {
@@ -62,30 +133,102 @@ h1, h2, h3, h4 {
   }
   
   .btn-primary {
-    @apply bg-primary-accent text-white;
+    background-color: var(--primary-accent);
+    color: white;
   }
   
   .btn-primary:hover {
-    @apply bg-[#4D7EFF] transform -translate-y-0.5;
+    background-color: #4D7EFF;
+    transform: translateY(-2px);
   }
   
   .btn-outline {
-    @apply bg-transparent text-primary-accent border border-primary-accent;
+    @apply bg-transparent border;
+    color: var(--primary-accent);
+    border-color: var(--primary-accent);
   }
   
   .btn-outline:hover {
-    @apply bg-highlight;
+    background-color: var(--highlight-color);
+  }
+  
+  /* Enhanced button visibility for light mode */
+  .btn-light {
+    @apply bg-white border border-gray-300 text-gray-700 shadow-sm;
+  }
+  
+  .btn-light:hover {
+    @apply bg-gray-50 border-gray-400;
+  }
+  
+  [data-theme="dark"] .btn-light {
+    @apply bg-gray-700 border-gray-600 text-gray-200;
+  }
+  
+  [data-theme="dark"] .btn-light:hover {
+    @apply bg-gray-600 border-gray-500;
   }
   
   .trend-up {
-    @apply text-success-accent;
+    color: var(--success-accent);
   }
   
   .trend-down {
-    @apply text-danger-accent;
+    color: var(--danger-accent);
   }
   
   .trend-neutral {
-    @apply text-warning-accent;
+    color: var(--warning-accent);
   }
 }
+
+/* Ensure all pages have consistent background */
+.App {
+  background-color: var(--bg-color) !important;
+  color: var(--text-light) !important;
+  min-height: 100vh;
+}
+
+/* Navigation and layout consistency */
+.main-content {
+  background-color: var(--bg-color) !important;
+  color: var(--text-light) !important;
+}
+
+/* Button improvements for better visibility */
+button {
+  border: 1px solid transparent;
+}
+
+button:not(.btn-primary):not(.btn-outline) {
+  background-color: var(--card-color);
+  color: var(--text-light);
+  border-color: var(--divider-color);
+}
+
+button:not(.btn-primary):not(.btn-outline):hover {
+  background-color: var(--highlight-color);
+  border-color: var(--primary-accent);
+}
+
+/* Input field consistency */
+input, textarea, select {
+  background-color: var(--card-bg) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2) !important;
+}
+
+/* Ensure proper text contrast */
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-primary {
+  color: var(--primary-accent) !important;
+}
+

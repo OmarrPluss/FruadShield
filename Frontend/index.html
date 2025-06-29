@@ -12,25 +12,12 @@
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-    <title>FraudWatch - Market Trends</title>
+    <title>FraudShield | Authentication</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/index.jsx"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const updateBackgroundColor = () => {
-          const isDarkMode = document.body.classList.contains('dark');
-          document.body.style.backgroundColor = isDarkMode ? '#1A1A2A' : '#F3F4F6';
-        };
-
-        updateBackgroundColor();
-
-        const observer = new MutationObserver(updateBackgroundColor);
-        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-      });
-    </script>
   </body>
 </html>
 
